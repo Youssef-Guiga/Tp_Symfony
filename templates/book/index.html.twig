@@ -56,8 +56,7 @@
 
 <main>
 
-
-    {% for book in books %}
+ {% for book in books %}
         <form action="" method="POST">
             <section class="book">
                 <img src="{{ asset('/' ~ book.img) }}" class="bookimg" alt="{{ book.title }}">
@@ -72,7 +71,7 @@
                 </div>
                 <p>{{ book.price }} DT</p>
 
-                <button name="add" type="submit" class="button">Add To Cart</button>
+                 <a href="{{ path('cart_add', {id: book.id}) }}" class="btn btn-success btn-add-to-cart">Add to cart</a>
             </section>
             <input type="hidden" name="name" value="{{ book.title }}">
         </form>

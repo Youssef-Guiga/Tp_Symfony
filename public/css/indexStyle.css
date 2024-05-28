@@ -1,0 +1,176 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgba(235,172,162,0.8),rgba(235,172,162,0.8)), url('../admin/Uploadimage/bookBacground.jpg');
+}
+
+.content {
+    position: relative;
+}
+
+.background-image {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.background-image img {
+    width: 100%;
+    height: auto;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.text-overlay h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.text-overlay p {
+    font-size: 1.2rem;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.book {
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+}
+
+.book img {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.book h2 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.book p {
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #4A919E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #212E53;
+}
+
+.container {
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.bookimg{
+    width: 90px;
+}
+
+footer {
+    text-align: center;
+    background-color: #4A919E;
+    color: white;
+    padding: 20px;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #CE6A6B;
+    padding: 20px;
+    color: #fff;
+    height: 70px;
+}
+
+.main-header .logo img {
+    width: 140px;
+    height: 90px;
+}
+
+.main-header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-header nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.main-header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.main-header .user-actions a {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-header .logo {
+        margin-bottom: 20px;
+    }
+
+    .main-header .user-actions {
+        margin-top: 20px;
+    }
+}
+
+.rating {
+    margin-top: -10px;
+}
+
+.star {
+    cursor: pointer;
+    color: gray;
+}
+
+.star:hover,
+.star.active,
+.rated {
+    color: gold;
+}
+
+.book img {
+    width: 150px; /* Set width to 100% to maintain aspect ratio */
+    height: 250px; /* Set a fixed height for uniformity */
+    object-fit: cover; /* Ensure the image covers the entire space */
+    border-radius: 5px;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore Main Feed</title>
+    <link rel="stylesheet" href="{{ asset('css/indexStyle.css') }}">
+</head>
+<body>
+{% if not app.user %}
+    <header class='main-header'>
+        <div class='logo'>
+            <img src='{{ asset('images/logo.png') }}' alt='Company Logo'>
+        </div>
+        <nav class='main-nav'>
+            <ul>
+                <li><a href='/contact'>Contact</a></li>
+                <li><a href='/aboutus'>About Us</a></li>
+                <li><a href='/'>Books</a></li>
+            </ul>
+        </nav>
+        <div class='user-actions'>
+            <a href='/cart'>Cart</a>
+            <a href='/login'>Login</a>
+            <a href='/register'>sign in</a>
+        </div>
+    </header>
+{% else %}
+    <header class='main-header'>
+        <div class='logo'>
+            <img src='{{ asset('images/logo.png') }}' alt='Company Logo'>
+        </div>
+        <nav class='main-nav'>
+            <ul>
+                <li><a href='/contact'>Contact</a></li>
+                <li><a href='/aboutus'>About Us</a></li>
+                <li><a href='/'>Books</a></li>
+            </ul>
+        </nav>
+        <div class='user-actions'>
+            <a href='/cart'>Cart</a>
+            <a href='/logout'>Logout</a>
+        </div>
+    </header>
+{% endif %}
+
+<div class="content">
+    <div class="background-image">
+        <img src="{{ asset('images/LIBRERY.jpg') }}" alt="Bookstore Image">
+        <div class="text-overlay">
+            <h2>Welcome to our Bookstore</h2>
+            <p>Discover a world of stories waiting to be explored. From bestsellers to hidden gems, we have something for every reader.</p>
+        </div>
+    </div>
+</div>
+
+<main>
+
+
+    {% for book in books %}
+        <form action="" method="POST">
+            <section class="book">
+                <img src="{{ asset('/' ~ book.img) }}" class="bookimg" alt="{{ book.title }}">
+                <h2>{{ book.title }}</h2>
+                <p>{{ book.author }}</p>
+                <div class="rating">
+                    <span class="star" onclick="setRating(1,1)">&#9733;</span>
+                    <span class="star" onclick="setRating(2,1)">&#9733;</span>
+                    <span class="star" onclick="setRating(3,1)">&#9733;</span>
+                    <span class="star" onclick="setRating(4,1)">&#9733;</span>
+                    <span class="star" onclick="setRating(5,1)">&#9733;</span>
+                </div>
+                <p>{{ book.price }} DT</p>
+
+                <button name="add" type="submit" class="button">Add To Cart</button>
+            </section>
+            <input type="hidden" name="name" value="{{ book.title }}">
+        </form>
+    {% endfor %}
+</main>
+
+<footer>
+    <p>&copy; 2024 Bookstore. All rights reserved.</p>
+</footer>
+
+<script>
+    function setRating(rating, i) {
+        const stars = document.querySelectorAll(`.rating${i} .star`);
+
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.classList.add('rated');
+            } else {
+                star.classList.remove('rated');
+            }
+        });
+    }
+</script>
+</body>
+</html>

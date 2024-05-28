@@ -4,47 +4,48 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
-use App\Security\AppAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
-    {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+#[Route('/register', name: 'app_register')]
+public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
+{
+$user = new User();
+$form = $this->createForm(RegistrationFormType::class, $user);
+$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
+if ($form->isSubmitted() && $form->isValid()) {
+// Encode the plain password
+$user->setPassword(
+$passwordHasher->hashPassword(
+$user,
+$form->get('password')->getData()
+)
+);
 
-            $entityManager->persist($user);
-            $entityManager->flush();
-            // do anything else you need here, like send an email
+// Set other properties
+$user->setEmail($form->get('email')->getData());
+$user->setPhonenumber($form->get('phonenumber')->getData());
+    $user->setRoles(['ROLE_USER']);
 
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
-        }
+// Persist the new user entity
+$entityManager->persist($user);
+$entityManager->flush();
 
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
-    }
+// You can add a flash message or redirect as needed
+$this->addFlash('success', 'Registration successful!');
+
+return $this->redirectToRoute('app_login');
+}
+
+return $this->render('registration/register.html.twig', [
+'registrationForm' => $form->createView(),
+]);
+}
 }

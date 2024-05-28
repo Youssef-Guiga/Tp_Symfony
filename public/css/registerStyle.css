@@ -1,0 +1,92 @@
+body {
+    background-image: linear-gradient(rgba(235,172,162,0.8), rgba(235,172,162,0.8)), url('/admin/Uploadimage/bookBacground.jpg');
+    height: 100%;
+}
+
+#form-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-inner-container {
+    background-color: white;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 20px gainsboro;
+}
+
+#sign-up-container {
+    padding: 50px 50px;
+    width: 400px;
+    text-align: top left;
+}
+
+form input[type=text],
+form input[type=email],
+form input[type=password],
+form input[type=tel] {
+    display: block;
+    margin-bottom: 15px; /* Adjusted for more space */
+    border: 1px solid #E5E9F5;
+    background-color: #F6F7FA;
+    padding: 10px;
+    margin-top: 15px; /* Adjusted for more space */
+    border-radius: 10px;
+    width: 100%;
+}
+
+#form-controls button {
+    border: none;
+    font-size: 110%;
+}
+
+input[type=submit] {
+    background-color: #CE6A6B;
+    color: white;
+    padding: 15px; /* Adjusted for more space */
+    margin: 15px 0; /* Adjusted for more space */
+    border: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+input[type=submit]:hover {
+    background-color: #CE6A6B;
+    color: white;
+    border: 1px solid #CE6A6B;
+}
+
+.logo-img {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.signup-heading {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 20px; /* Adjusted for more space */
+    color: #CE6A6B;
+}
+
+.error {
+    background: #EBACA2;
+    padding: 10px;
+    width: 90%;
+    margin: 10px auto; /* Adjusted for more space */
+    color: red;
+    border-radius: 5px;
+}
+
+.success {
+    background: #B7FFB7;
+    padding: 10px;
+    width: 90%;
+    margin: 10px auto; /* Adjusted for more space */
+    color: green;
+    border-radius: 5px;
+}

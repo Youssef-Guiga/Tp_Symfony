@@ -2,7 +2,15 @@
 
 {% block title %}Log in!{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/registerStyle.css') }}">
+{% endblock %}
+
 {% block body %}
+<div id="form-container">
+    <div id="form-inner-container">
+        <div id="sign-up-container">
+            <h1 class="signup-heading">Log in</h1>
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -14,7 +22,7 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <h2 class="h3 mb-3 font-weight-normal"></h2>
     <label for="inputUsername">Username</label>
     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
     <label for="inputPassword">Password</label>
@@ -28,4 +36,7 @@
         Sign in
     </button>
 </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

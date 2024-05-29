@@ -14,6 +14,14 @@ admin_book_delete:
     controller: App\Controller\AdminController::delete
     methods: POST
 
+admin_manage_orders:
+    path: /admin/orders
+    controller: App\Controller\AdminController::manageOrders
+
+admin_order_delete:
+    path: /admin/orders/delete
+    controller: App\Controller\AdminController::deleteOrder
+
 homepage:
     path: /
     controller: App\Controller\DefaultController::index

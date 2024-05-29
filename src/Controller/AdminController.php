@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Books;
+use App\Entity\Commande;
 use App\Form\BookType;
 use App\Repository\BooksRepository;
+use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,5 +64,38 @@ class AdminController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_dashboard');
+    }
+
+    #[Route('/admin/orders', name: 'admin_manage_orders')]
+    public function manageOrders(CommandeRepository $commandeRepository): Response
+    {
+        $orders = $commandeRepository->findAll();
+        return $this->render('admin/manage_orders.html.twig', [
+            'orders' => $orders,
+        ]);
+    }
+
+    #[Route('/admin/orders/delete', name: 'admin_order_delete')]
+    public function deleteOrder(Request $request, CommandeRepository $commandeRepository, EntityManagerInterface $entityManager): Response
+    {
+        $bookid = $request->query->get('bookid');
+        $userid = $request->query->get('userid');
+
+        if ($bookid && $userid) {
+            $order = $commandeRepository->findOneBy([
+                'bookid' => $bookid,
+                'userid' => $userid
+            ]);
+
+            if ($order) {
+                $entityManager->remove($order);
+                $entityManager->flush();
+                return $this->redirectToRoute('admin_manage_orders');
+            } else {
+                $this->addFlash('error', 'Error deleting order.');
+            }
+        }
+
+        return $this->redirectToRoute('admin_manage_orders');
     }
 }

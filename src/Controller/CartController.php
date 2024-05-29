@@ -15,28 +15,32 @@ use Doctrine\ORM\EntityManagerInterface;
 class CartController extends AbstractController
 {
     #[Route('/', name: "index")]
-    public function index(SessionInterface $session, BooksRepository $booksRepository)
-    {
-        // Get the cart
-        $cart = $session->get('cart', []);
+public function index(SessionInterface $session, BooksRepository $booksRepository)
+{
+    // Get the cart
+    $cart = $session->get('cart', []);
 
-        // Initialize an array to hold our full cart details
-        $cartData = [];
-        $total = 0;
+    // Initialize an array to hold our full cart details
+    $cartData = [];
+    $total = 0;
 
-        foreach ($cart as $id => $quantity) {
-            $book = $booksRepository->find($id);
-            if ($book) {
-                $cartData[] = [
-                    'book' => $book,
-                    'quantity' => $quantity
-                ];
-                $total += $book->getPrice() * $quantity;
-            }
+    foreach ($cart as $id => $quantity) {
+        $book = $booksRepository->find($id);
+        if ($book) {
+            $cartData[] = [
+                'book' => $book,
+                'quantity' => $quantity
+            ];
+            $total += $book->getPrice() * $quantity;
         }
-
-        return $this->render('cart/index.html.twig', compact('cartData', 'total'));
     }
+
+    // Check if the cart is empty
+    $isCartEmpty = empty($cartData);
+
+    return $this->render('cart/index.html.twig', compact('cartData', 'total', 'isCartEmpty'));
+}
+
 
     #[Route('/add/{id}', name: "add")]
     public function add($id, SessionInterface $session, BooksRepository $booksRepository)

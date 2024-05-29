@@ -1,5 +1,3 @@
-{# templates/cart/index.html.twig #}
-
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
@@ -50,7 +48,7 @@
                         </tr>
                         <tr>
                             <td colspan="5">
-                                <a href="{{ path('cart_order') }}" class="btn btn-primary">Place Order</a>
+                                <a href="{{ path('cart_order') }}" class="btn btn-primary {% if isCartEmpty %}disabled{% endif %}">Place Order</a>
                             </td>
                         </tr>
                     </tfoot>

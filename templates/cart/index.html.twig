@@ -1,58 +1,61 @@
-
 {# templates/cart/index.html.twig #}
 
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/cartStyle.css') }}">
-    
 {% endblock %}
 
 {% block body %}
-     <main class="container">
+    <main class="container">
         <section class="row">
-           <div class="col-12">
-              <h1>Cart</h1>
-              <table class="table">
-                 <thead>
-                    <tr>
-                       <th>Book</th>
-                       <th>Price</th>
-                       <th>Quantity</th>
-                       <th>Total</th>
-                       <th>Action</th>
-                    </tr>
-                 </thead>
-                 <tbody>
-                 {% for element in cartData %}
-                    <tr>
-                      <td>{{ element.book.title }}</td>
-                      <td>{{ element.book.price }}</td>
-                      <td>{{ element.quantity }}</td>
-                      <td>{{ element.quantity * element.book.price }}</td>
-                      <td>
-                         <a href="{{ path('cart_add', {id: element.book.id}) }}" class="btn btn-success">+</a>
-                         <a href="{{ path('cart_remove', {id: element.book.id}) }}" class="btn btn-warning">-</a>
-                         <a href="{{ path('cart_delete', {id: element.book.id}) }}" class="btn btn-danger">Supprimer</a>
-                      </td>
-                    </tr>
-                  {% else %}
-                    <tr>
-                         <td colspan="5">Your cart is empty</td>
-                    </tr>
-                  {% endfor %}
-                 </tbody>
-                 <tfoot>
-                 <tr>
-                     <td colspan="3">Total</td>
-                     <td>{{ total }}</td>
-                     <td>
-                         <a href="{{ path('cart_empty') }}" class="btn btn-danger">Vider</a>
-                     </td>
-                 </tr>
-                 </tfoot>
-              </table>
-           </div>
+            <div class="col-12">
+                <h1>Cart</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Book</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in cartData %}
+                            <tr>
+                                <td>{{ element.book.title }}</td>
+                                <td>{{ element.book.price }}</td>
+                                <td>{{ element.quantity }}</td>
+                                <td>{{ element.quantity * element.book.price }}</td>
+                                <td>
+                                    <a href="{{ path('cart_add', {id: element.book.id}) }}" class="btn btn-success">+</a>
+                                    <a href="{{ path('cart_remove', {id: element.book.id}) }}" class="btn btn-warning">-</a>
+                                    <a href="{{ path('cart_delete', {id: element.book.id}) }}" class="btn btn-danger">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">Your cart is empty</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">Total</td>
+                            <td>{{ total }}</td>
+                            <td>
+                                <a href="{{ path('cart_empty') }}" class="btn btn-danger">Vider</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <a href="{{ path('cart_order') }}" class="btn btn-primary">Place Order</a>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </section>
-     </main>
+    </main>
 {% endblock %}

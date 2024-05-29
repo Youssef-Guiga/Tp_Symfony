@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Books;
+use App\Entity\Commande;
+use App\Form\OrderType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\BooksRepository;
+use Doctrine\ORM\EntityManagerInterface;
 
 #[Route('/cart', name: "cart_")]
 class CartController extends AbstractController
@@ -16,7 +19,7 @@ class CartController extends AbstractController
     {
         // Get the cart
         $cart = $session->get('cart', []);
-        
+
         // Initialize an array to hold our full cart details
         $cartData = [];
         $total = 0;
@@ -115,5 +118,40 @@ class CartController extends AbstractController
     {
         $session->remove('cart');
         return $this->redirectToRoute('cart_index');
+    }
+
+    #[Route('/order', name: "order")]
+    public function order(Request $request, SessionInterface $session, BooksRepository $booksRepository, EntityManagerInterface $em)
+    {
+        $orderForm = $this->createForm(OrderType::class);
+        $orderForm->handleRequest($request);
+
+        if ($orderForm->isSubmitted() && $orderForm->isValid()) {
+            $data = $orderForm->getData();
+            $user = $this->getUser();
+            $cart = $session->get('cart', []);
+
+            foreach ($cart as $id => $quantity) {
+                $book = $booksRepository->find($id);
+                if ($book) {
+                    $order = new Commande();
+                    $order->setBookid($book); // Set the Books entity
+                    $order->setUserid($user); // Set the User entity
+                    $order->setVille($data['ville']);
+                    $order->setQuantity($quantity);
+                    $em->persist($order);
+                }
+            }
+
+            $em->flush();
+            $session->remove('cart');
+
+            $this->addFlash('success', 'Your order has been placed successfully!');
+            return $this->redirectToRoute('cart_index');
+        }
+
+        return $this->render('cart/order.html.twig', [
+            'orderForm' => $orderForm->createView(),
+        ]);
     }
 }

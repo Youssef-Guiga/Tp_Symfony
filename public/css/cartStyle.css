@@ -132,3 +132,32 @@
             font-size: 0.875rem;
         }
     }
+
+
+
+    
+/* Button styles */
+.btn-primary {
+    color: #fff;
+    background-color: #efbcb4;
+    border-color: #efbcb4;
+    margin-left: 45%;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #efbcb4;
+    border-color: #efbcb4;
+}
+
+
+
+
+
+
+
+
+
+
+
+

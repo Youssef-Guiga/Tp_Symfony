@@ -1,0 +1,15 @@
+{# templates/cart/order.html.twig #}
+
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/orderStyle.css') }}">
+{% endblock %}
+{% block title %}Place Order{% endblock %}
+
+{% block body %}
+    <h1>Place Order</h1>
+    {{ form_start(orderForm) }}
+        {{ form_row(orderForm.ville) }}
+        {{ form_row(orderForm.save) }}
+    {{ form_end(orderForm) }}
+{% endblock %}

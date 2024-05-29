@@ -11,12 +11,12 @@
     </div>
     <nav class="main-nav">
         <ul>
-            <li><a href="manage_orders">Manage Orders</a></li>
-            <li><a href="admin_dashboard">Manage Books</a></li>
+            <li><a href="{{ path('admin_manage_orders') }}">Manage Orders</a></li>
+            <li><a href="{{ path('admin_dashboard') }}">Manage Books</a></li>
         </ul>
     </nav>
     <div class="admin-actions">
-        <a href="user_dashboard">View User Dashboard</a>
+        <a href="{{ path('book_index') }}">View User Dashboard</a>
         <a href="logout">Logout</a>
     </div>
 </header>

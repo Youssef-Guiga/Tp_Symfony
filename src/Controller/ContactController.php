@@ -22,7 +22,12 @@ class ContactController extends AbstractController
 
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+
+
             $data = $form->getData();
 
             $address = $data['email'];
@@ -36,6 +41,9 @@ class ContactController extends AbstractController
                 ->text($content);
 
             $mailer->send($email);
+            $this->addFlash('success', 'Your message has been sent successfully!');
+
+
 
         }
 

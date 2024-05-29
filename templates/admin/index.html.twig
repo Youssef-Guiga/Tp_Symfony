@@ -11,22 +11,17 @@
     </div>
     <nav class="main-nav">
         <ul>
-            <li><a href="manage_orders">Manage Orders</a></li>
-            <li><a href="'admin_dashboard">Manage Books</a></li>
+            <li><a href="{{ path('admin_manage_orders') }}">Manage Orders</a></li>
+            <li><a href="{{ path('admin_dashboard') }}">Manage Books</a></li>
+            <li> <a href="{{ path('admin_book_new') }}">Add New Book</a></li>
         </ul>
     </nav>
     <div class="admin-actions">
-        <a href="'user_dashboard'">View User Dashboard</a>
+        <a href="user_dashboard'">View User Dashboard</a>
         <a href="logout">Logout</a>
     </div>
 </header>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <a href="{{ path('admin_book_new') }}" class="btn btn-add-book">Add New Book</a>
-        </div>
-    </div>
 
 
     <div class="row mt-4">

@@ -1,0 +1,59 @@
+{# templates/admin/manage_orders.html.twig #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Orders</title>
+    <link rel="stylesheet" href="{{ asset('css/adminStyle.css') }}">
+</head>
+<body>
+<header class="main-header">
+    <div class="logo">
+        <img src="{{ asset('images/logo.png') }}" alt="Company Logo">
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="admin_dashboard">Dashboard</a></li>
+            <li><a href="{{ path('admin_manage_orders') }}">Manage Orders</a></li>
+            <li><a href="admin_book_new">Add New Book</a></li>
+        </ul>
+    </nav>
+    <div class="admin-actions">
+        <a href="user_dashboard">View User Dashboard</a>
+        <a href="app_logout">Logout</a>
+    </div>
+</header>
+<main>
+    <div class="admin-content">
+        <h2>Manage Orders</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ISBN</th>
+                    <th>Ville</th>
+                    <th>Telephone</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.bookid.id }}</td>
+                        <td>{{ order.ville }}</td>
+                        <td>{{ order.userid.phonenumber}}</td>
+                        <td>{{ order.quantity }}</td>
+                        <td>
+                            <a href="{{ path('admin_order_delete', {bookid: order.bookid.id, userid: order.userid.id}) }}" onclick="return confirm('Are you sure?');">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2024 Bookstore Admin. All rights reserved.</p>
+</footer>
+</body>
+</html>

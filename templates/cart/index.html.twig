@@ -7,6 +7,23 @@
 {% endblock %}
 
 {% block body %}
+    
+    <header class='main-header'>
+        <div class='logo'>
+            <img src='{{ asset('images/logo.png') }}' alt='Company Logo'>
+        </div>
+        <nav class='main-nav'>
+            <ul>
+                <li><a href='/contact'>Contact</a></li>
+                <li><a href='/aboutus'>About Us</a></li>
+                <li><a href='/'>Books</a></li>
+            </ul>
+        </nav>
+        <div class='user-actions'>
+            <a href='/cart'>Cart</a>
+            <a href='/logout'>Logout</a>
+        </div>
+    </header>
     <main class="container">
         <section class="row">
             <div class="col-12">

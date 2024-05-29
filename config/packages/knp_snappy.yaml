@@ -1,0 +1,6 @@
+# config/packages/knp_snappy.yaml
+knp_snappy:
+  pdf:
+    enabled: true
+    binary: 'C:\Programmes\wkhtmltopdf\bin\wkhtmltopdf.exe'
+  temporary_folder: '%kernel.project_dir%/var/tmp'

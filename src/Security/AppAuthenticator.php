@@ -42,7 +42,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+   /* public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
@@ -51,7 +51,21 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         // For example:
         // return new RedirectResponse($this->urlGenerator->generate('some_route'));
         return new RedirectResponse($this->urlGenerator->generate('homepage'));
+    }*/
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+    {
+        $user = $token->getUser();
+
+        // Vérifier le rôle de l'utilisateur
+        if (in_array('ROLE_ADMIN', $user->getRoles())) {
+            // Redirection vers le tableau de bord de l'administrateur
+            return new RedirectResponse($this->urlGenerator->generate('admin_dashboard'));
+        }
+
+        // Redirection vers le tableau de bord de l'utilisateur normal
+        return new RedirectResponse($this->urlGenerator->generate('homepage'));
     }
+
 
     protected function getLoginUrl(Request $request): string
     {

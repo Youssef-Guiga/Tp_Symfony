@@ -1,0 +1,44 @@
+{# templates/cart/pdf.html.twig #}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+    <style>
+        /* Add any styling you need for the PDF */
+        body { font-family: Arial, sans-serif; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+<h1>ur shopping list</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Book</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in cartItems %}
+        <tr>
+            <td>{{ item.book.title }}</td>
+            <td>{{ item.book.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.quantity * item.book.price }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="3">Total</td>
+        <td>{{ total }}</td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+</html>

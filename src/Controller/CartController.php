@@ -57,7 +57,7 @@ class CartController extends AbstractController
         $session->set('cart', $cart);
 
         // Redirect to the cart page
-        return $this->redirectToRoute('cart_index');
+        return $this->redirectToRoute('book_index');
     }
 
     #[Route('/remove/{id}', name: "remove")]
@@ -116,4 +116,5 @@ class CartController extends AbstractController
         $session->remove('cart');
         return $this->redirectToRoute('cart_index');
     }
+
 }

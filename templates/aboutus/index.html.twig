@@ -3,16 +3,21 @@
 <!DOCTYPE html>
 <html>
 
+
+
+
+
+    {% if not app.user %}
     <header class='main-header'>
-        <link rel="stylesheet" href="{{ asset('css/aboutusStyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/aboutusStyle.css') }}">
         <div class='logo'>
             <img src='{{ asset('images/logo.png') }}' alt='Company Logo'>
         </div>
         <nav class='main-nav'>
             <ul>
-                <li><a href='/contact'>Contact</a></li>
-                <li><a href='/aboutus'>About Us</a></li>
-                <li><a href='/'>Books</a></li>
+                <li><a href='/contact' class="link">Contact</a></li>
+                <li><a href='/aboutus' class="link">About Us</a></li>
+                <li><a href='/' class="link">Books</a></li>
             </ul>
         </nav>
         <div class='user-actions'>
@@ -21,6 +26,25 @@
             <a href='/register'>sign in</a>
         </div>
     </header>
+{% else %}
+    <header class='main-header'>
+    <link rel="stylesheet" href="{{ asset('css/aboutusStyle.css') }}">
+        <div class='logo'>
+            <img src='{{ asset('images/logo.png') }}' alt='Company Logo'>
+        </div>
+        <nav class='main-nav'>
+            <ul>
+                <li><a href='/contact' class="link">Contact</a></li>
+                <li><a href='/aboutus' class="link">About Us</a></li>
+                <li><a href='/' class="link">Books</a></li>
+            </ul>
+        </nav>
+        <div class='user-actions'>
+            <a href='/cart'>Cart</a>
+            <a href='/logout'>Logout</a>
+        </div>
+    </header>
+{% endif %}
  <section id="AboutUs">
         <div class="container">
             <h1 id="titleAboutUs">About Us</h1>

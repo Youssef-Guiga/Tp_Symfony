@@ -1,6 +1,18 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+admin_dashboard:
+    path: /admin
+    controller: App\Controller\AdminController::dashboard
+
+admin_book_new:
+    path: /admin/books/new
+    controller: App\Controller\AdminController::new
+
+admin_book_delete:
+    path: /admin/books/delete/{id}
+    controller: App\Controller\AdminController::delete
+    methods: POST
 
 homepage:
     path: /

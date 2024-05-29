@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+    background-image: linear-gradient(rgba(235,172,162,0.8), rgba(235,172,162,0.8)), url('/admin/Uploadimage/bookBacground.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column; /* Ensure header appears at the top */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 80%;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.logo-container {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.logo-container img {
+    width: 100%;
+    height: auto;
+}
+
+form {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+form h3 {
+    color: #555;
+    font-weight: 800;
+    margin: 10px;
+}
+
+form input,
+form textarea {
+    border: 0;
+    margin: 10px 0;
+    padding: 10px;
+    outline: none;
+    background: #f5f5f5;
+    font-size: 14px;
+    width: 100%;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #CE6A6B;
+    color: aliceblue;
+    font-size: 16px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    width: 150px;
+    margin: 20px auto 0;
+    border-radius: 30px;
+}
+header {
+    background-color: #CE6A6B;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    margin-top: 0; /* Set margin-top to 0 */
+}
+
+.logo img {
+    width: 100px;
+    height: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 0; /* Remove margin for the last item */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+}
+
+
+
+
+
+
+.main-header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-header nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.main-header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.main-header .user-actions a {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+}

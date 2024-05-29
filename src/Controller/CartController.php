@@ -10,11 +10,15 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\BooksRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+
+
+#[IsGranted("IS_AUTHENTICATED_FULLY")] // Apply to all methods in the class
 #[Route('/cart', name: "cart_")]
 class CartController extends AbstractController
 {
-    #[Route('/', name: "index")]
+#[Route('/', name: "index")]
 public function index(SessionInterface $session, BooksRepository $booksRepository)
 {
     // Get the cart
@@ -61,6 +65,27 @@ public function index(SessionInterface $session, BooksRepository $booksRepositor
         } else {
             $cart[$id]++;
         }
+        $session->set('cart', $cart);
+
+        // Redirect to the cart page
+        return $this->redirectToRoute('book_index');
+    }
+
+    #[Route('/increase/{id}', name: "increase")]
+    public function increase($id, SessionInterface $session, BooksRepository $booksRepository)
+    {
+        // Get the book from the repository
+        $book = $booksRepository->find($id);
+
+        
+
+        // Get the cart
+        $cart = $session->get('cart', []);
+
+        // Add the book to the cart
+        
+            $cart[$id]++;
+       
         $session->set('cart', $cart);
 
         // Redirect to the cart page

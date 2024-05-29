@@ -27,7 +27,7 @@
                                 <td>{{ element.quantity }}</td>
                                 <td>{{ element.quantity * element.book.price }}</td>
                                 <td>
-                                    <a href="{{ path('cart_add', {id: element.book.id}) }}" class="btn btn-success">+</a>
+                                    <a href="{{ path('cart_increase', {id: element.book.id}) }}" class="btn btn-success">+</a>
                                     <a href="{{ path('cart_remove', {id: element.book.id}) }}" class="btn btn-warning">-</a>
                                     <a href="{{ path('cart_delete', {id: element.book.id}) }}" class="btn btn-danger">Supprimer</a>
                                 </td>

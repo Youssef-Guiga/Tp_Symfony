@@ -1,0 +1,65 @@
+body {
+        font-family: Arial, sans-serif;
+        background-color:#FFDFDB ;
+        margin: 0;
+        padding: 0;
+    }
+    
+    header {
+        background-color:#CE6A6B;
+        color: #fff;
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo img {
+        width: 100px;
+        height: auto;
+    }
+    
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+    
+    nav ul li {
+        margin-right: 20px;
+    }
+    
+    .user-actions a {
+        color: #fff;
+        text-decoration: none;
+        margin-left: 20px;
+    }
+    
+    .container {
+        max-width: 960px;
+        margin: 20px auto;
+        padding: 0 20px;
+    }
+    
+    #titleAboutUs {
+        color: #333;
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+    
+    .shop-name {
+        font-weight: bold;
+        color: #333;
+    }
+    
+    p {
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    
+    .options{
+        color: #FFDFDB;
+        text-decoration: none;
+    }
+    
